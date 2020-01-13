@@ -1,0 +1,23 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'MCS-GCOETZEE(4cdeb3fc-4431-4652-89bb-9508ae7eff95)'
+    subscriptionId: '4cdeb3fc-4431-4652-89bb-9508ae7eff95'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'Cloudwise-auto-testrg1'
+    location: 'South Africa North'
+    templateLocation: 'Linked artifact'
+    deploymentMode: 'Incremental'
